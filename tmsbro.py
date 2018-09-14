@@ -1,13 +1,16 @@
 from urllib.request import urlopen
 import re
 import smtplib
+import os
 
 # Selenium used to navigate to class page in TMS
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
-# Opens an instance of Firefox
-driver = webdriver.Firefox()
+opts = ChromeOptions()
+opts.binary_location = os.environ['GOOGLE_CHROME_BIN']
+driver = webdriver.Chrome(executable_path=os.environ['CHROMEDRIVER_PATH'], chrome_options=opts)  
+
 # Opens home page for TMS 
 driver.get("https://termmasterschedule.drexel.edu/webtms_du/app?page=Home&service=page")
 
